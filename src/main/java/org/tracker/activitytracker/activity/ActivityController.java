@@ -1,10 +1,15 @@
 package org.tracker.activitytracker.activity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.tracker.activitytracker.activity.repo.ActivityRepositoryImpl;
 
 @RestController
 @RequestMapping("/activity")
 public class ActivityController {
+
+    @Autowired
+    ActivityRepositoryImpl repository;
 
     @RequestMapping("/health")
     @GetMapping
@@ -14,7 +19,7 @@ public class ActivityController {
 
     @RequestMapping("/saveActivity")
     @PostMapping
-    public ActivityModel saveActivity(@RequestBody ActivityModel activityModel){
-            return activityModel;
+    public UserActivity saveActivity(@RequestBody UserActivity userActivity){
+        return repository.save(userActivity);
     }
 }
