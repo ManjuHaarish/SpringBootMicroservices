@@ -17,7 +17,7 @@ public class ActivityRepositoryImpl implements ActivityRepository {
     ActivityJPARepository activityRepository;
 
     public UserActivity save(UserActivity userActivity){
-        log.log(Level.FINE,"Userdetails : Description : " +userActivity.getDescription()+"  Name : " +userActivity.getName());
+        log.log(Level.FINE,"Userdetails : Description : " +userActivity.getDescription()+"  Name : " +userActivity.getTitle());
         return  activityRepository.save(userActivity);
     }
 
@@ -29,8 +29,8 @@ public class ActivityRepositoryImpl implements ActivityRepository {
     @Override
     public UserActivity updateActivity(UserActivity userActivity, int userId) {
         UserActivity activity =  activityRepository.findById(userId).get();
-        if(activity!=null && activity.getName()!=null){
-            activity.setName(userActivity.getName());
+        if(activity!=null && activity.getTitle()!=null){
+            activity.setTitle(userActivity.getTitle());
             if(activity.getDescription()!=null){
                 activity.setDescription(userActivity.getDescription());
             }if(activity.getFromDate()!=null){
